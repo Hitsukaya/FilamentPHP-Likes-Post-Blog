@@ -164,3 +164,9 @@ class LikeButton extends Component
                                  ->iconColor('danger'),
  
 ```
+
+7. In vendor/filament-blog/blogs/show.blade.php or another blog part add this line
+```
+Like: <livewire:like-button :key="'like-' . $post->id" :$post />
+ 
+```
