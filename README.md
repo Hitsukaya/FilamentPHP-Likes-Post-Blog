@@ -9,6 +9,9 @@ The source code for the [Filament](https://filamentphp.com) website.
 ![alt text](https://github.com/Hitsukaya/FilamentPHP-Likes-Post-Blog/blob/main/blog%20post%20like%20button%20filamentphp.png "Like Button")
 ![alt text](https://github.com/Hitsukaya/FilamentPHP-Likes-Post-Blog/blob/main/Like%20button%20filamentphp.png "Like Button")
 
+Install the FireFly Blog 
+https://filamentphp.com/plugins/firefly-blog
+
 Add like button for blog post
 1. Create migration
 ```
