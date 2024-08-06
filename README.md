@@ -1,4 +1,12 @@
 # FilamentPHP-Likes-Post-Blog
+The source code for the [Filament](https://filamentphp.com) website.
+
+## Docs
+
+> [!NOTE]
+> Please submit pull requests for documentation changes to the [`filament/filament`](https://github.com/filamentphp/filament) repository. The relevant documentation files can be found in the `/docs` directory of each package.
+
+
 Add like button for blog post
 1. Create migration
 ```
