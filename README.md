@@ -1,4 +1,9 @@
 # FilamentPHP-Likes-Post-Blog
-# Create migrations
+Some basic Git commands are:
+```
+git status
+git add
+git commit
+```
 
 
