@@ -96,6 +96,80 @@ class LikeButton extends Component
     }
 }
 ```
+Update
+```
+ <?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use Firefly\FilamentBlog\Models\Post;
+
+class LikeButton extends Component
+{
+    public Post $post;
+    //public bool $isLiked;
+    public bool $isLiked =false;
+    public int $likeCount;
+    public $likes;
+
+    protected $listeners = ['likeToggled' => 'refreshLikes'];
+
+    public function refreshLikes()
+    {
+        $this->post->load('likes');
+    }
+
+    // public function mount()
+    // {
+    //     $this->isLiked = auth()->check() && auth()->user()->hasLiked($this->post);
+    // }
+
+    public function mount(Post $post)
+    {
+        $this->post = $post;
+        $this->isLiked = auth()->check() && auth()->user()->hasLiked($this->post);
+        $this->likeCount = $this->post->likes()->count();
+        $this->likes = $this->post->likes;
+    }
+
+    public function toggleLike()
+    {
+        if (auth()->guest()) {
+            return $this->redirect(route('login'), true);
+        }
+
+        $user = auth()->user();
+
+        if ($this->isLiked) {
+            $user->likes()->detach($this->post);
+            $this->isLiked = false;
+            $this->likeCount--;
+        } else {
+            $user->likes()->attach($this->post);
+            $this->isLiked = true;
+            $this->likeCount++;
+        }
+
+        $this->post->load('likes');
+        $this->likes = $this->post->likes;
+    }
+
+
+    public function render()
+    {
+        return view('livewire.like-button',  [
+            'isLiked' => $this->isLiked,
+            'likeCount' => $this->likeCount,
+            'likes' => $this->likes,
+        ]);
+    }
+}
+
+
+ 
+```
+
 3. In resources/views/livewire/ ---- Create like-button.blade.php & add this code
 ```
 <button wire.loading.attr="disabled" wire:click="toggleLike()" class="flex items-center">
