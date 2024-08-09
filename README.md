@@ -311,11 +311,47 @@ Update
  
 ```
 
+Update
+```
+                                            TextEntry::make('likes.id')
+                                                ->label('Likes')
+                                                ->formatStateUsing(fn ($record) => $record->likes->count())
+                                                ->color('danger')
+                                                ->icon('heroicon-o-heart')
+                                                ->iconColor('danger'),
+
+                                            TextEntry::make('comments.id')
+                                                ->label('Comments')
+                                                ->color('primary')
+                                                ->icon('heroicon-o-chat-bubble-left-right')
+                                                ->iconColor('primary')
+                                                ->formatStateUsing(fn ($record) => $record->comments->count()),
+
+
+                                Tabs\Tab::make('Users Like')
+                                    ->schema([
+                                        TextEntry::make('likes.name') //Show user name of the like post
+                                            ->label('Users Like')
+                                            ->color('danger')
+                                            ->badge()
+                                            ->icon('heroicon-o-heart')
+                                            ->iconColor('danger'),
+                                    ]),
+                                ]),
+ 
+```
+
 7. In vendor/filament-blog/blogs/show.blade.php or another blog part add this line
 ```
 Like: <livewire:like-button :key="'like-' . $post->id" :$post />
- 
 ```
+Update
+```
+<div>
+    <span class="inline-flex">Offer Like: <livewire:like-button :post="$post" /><span>
+</div>
+```
+
 8. In vendor/filament-blog/blogs/show.blade.php or another blog part add this line
 ```
     <div class="py-2">
