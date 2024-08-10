@@ -207,7 +207,8 @@ class LikeButton extends Component
     public function toggleLike()
     {
         if (auth()->guest()) {
-            return $this->redirect(route('login'), true);
+
+            return redirect()->route('login');
         }
 
         $user = auth()->user();
